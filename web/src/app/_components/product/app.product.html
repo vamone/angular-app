@@ -1,0 +1,31 @@
+<a [routerLink]="['/']">Home</a>
+
+<div *ngIf="product">
+    <h1 *ngIf="!isEditable">{{product.title}}</h1>
+    <input type="text" [(ngModel)]="product.title" *ngIf="isEditable">
+
+    <p *ngIf="!isEditable">{{product.description}}</p>
+    <input type="text" [(ngModel)]="product.description" *ngIf="isEditable">
+
+    <img src="{{product.imageUrl}}" *ngIf="!isEditable" />
+    <input type="text" [(ngModel)]="product.imageUrl" *ngIf="isEditable">
+
+    <p>
+        <button class="btn btn-primary" (click)="onEdit()" *ngIf="!isEditable">Edit</button>
+        <button class="btn btn-primary" (click)="onSave()" *ngIf="isEditable">Save</button>
+        &nbsp;
+        <button class="btn btn-primary" (click)="onDelete()" *ngIf="isEditable">Delete</button>
+    </p>
+</div>
+
+<p *ngIf="!product && !isLoading">
+    Product not found or has been deleted.
+</p>
+
+<p *ngIf="isLoading">
+    Loading product...
+</p>
+
+<p *ngIf="isSaving">Saving product...</p>
+
+<p *ngIf="isDeleting">Deleting product...</p>

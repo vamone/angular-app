@@ -1,0 +1,12 @@
+<h1>Our top products</h1>
+
+<p *ngIf="isLoading">Loading products...</p>
+<ul>
+    <li *ngFor="let product of products">
+        <p><a [routerLink]="['/product', product.id, product.humanUrl]">{{product.title}}</a></p>
+
+        <p>{{product.description}}</p>
+        <p><img src="{{product.imageUrl}}" /></p>
+
+    </li>
+</ul>
